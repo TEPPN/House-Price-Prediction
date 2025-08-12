@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House Price Prediction</title>
+    <script src="fetch.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="max-w-screen-lg mx-auto">
+    <form action="fetch.js" method="POST" class="w-full max-w-full">
+        <h1 class="text-center text-4xl underline mb-10 mt-10">House Price Prediction</h1>
+        <div class="m-6 grid grid-cols-2 gap-6 w-full">
+            <div>
+                <h2 class="text-left text-2xl underline mb-4">House Size</h2>
+                <div class="grid gap-3 mb-6 grid-cols-2">
+                <div>
+                    <label for="sqft_living">Home Square Footage:</label>
+                    <input type="number" id="sqft_living" name="sqft_living" required placeholder="0" class="w-full border rounded p-2">
+                </div>
+
+                <div>
+                    <label for="sqft_above">Square Footage Above</label>
+                    <input type="number" id="sqft_above" name="sqft_above" required placeholder="0" class="w-full border rounded p-2">
+                </div>
+                </div>
+
+                <div class="grid gap-3 mb-6 grid-cols-2">
+                <div>
+                    <label for="sqft_lot">Lot Square Footage</label>
+                    <input type="number" name="sqft_lot" id="sqft_lot" required placeholder="0" class="w-full border rounded p-2">
+                </div>
+
+                <div>
+                    <label for="sqft_basement">Basement Square Footage</label>
+                    <input type="number" id="sqft_basement" name="sqft_basement" required placeholder="0" class="w-full border rounded p-2">
+                </div>
+            </div>
+            </div>
+            <div>
+                <h2 class="text-left text-2xl underline mb-4">House Location</h2>
+                <div class="grid gap-6 mb-6">
+                    <div>
+                        <label for="lat" >Latitude</label><br>
+                        <input type="number" id="lat" name="lat" step="any" class="w-full border rounded p-2"  required placeholder="0">
+                    </div>
+                    <div>
+                        <label for="long" s>Longitude</label><br>
+                        <input type="number" id="long" name="long" step="any" class="w-full border rounded p-2"  required placeholder="0">
+                    </div>
+                </div>
+            </div>        
+        </div>
+        <br>
+        <div class="m-6 grid grid-cols-2 gap-6 w-full">
+            <div>
+                <h2 class="text-left text-2xl underline mb-4">House Detail</h2>
+                <div class="grid gap-3 mb-6 grid-cols-3">
+                    <div>
+                        <label for="grade" >Grade:</label>
+                        <select name="grade" class="w-full border rounded p-2" id="grade">
+                            <option value="1">1</option>
+                            <option value="2">2</option> 
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option> 
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option> 
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="yr_built">Year Built:</label>
+                        <input type="number" id="yr_built" class="w-full border rounded p-2" name="yr_built" placeholder="0">
+                    </div>
+                    <div>
+                        <label for="floors">Floors:</label>
+                        <input type="number" id="floors" class="w-full border rounded p-2" name="floors" placeholder="0">
+                    </div>
+                    <div>
+                        <label for="condtion" >Condition</label>
+                        <select name="condition" class="w-full border rounded p-2" id="condition">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="bathrooms">Bathrooms:</label>
+                        <input type="number" id="bathrooms" name="bathrooms" class="w-full border rounded p-2" placeholder="0">
+                    </div>
+                    <div>
+                        <label for="bedrooms">Bedrooms:</label>
+                        <input type="number" id="bedrooms" name="bedrooms" class="w-full border rounded p-2" placeholder="0">
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="h-64 overflow-y-scroll border p-4">
+                    <p>Grade Category:</p>
+                    <ul class="list-disc list-inside">
+                        <li>1-3 Falls short of minimum building standards. Normally cabin or inferior structure.</li>
+                        <li>4 Generally older, low quality construction. Does not meet code.</li>
+                        <li>5 Low construction costs and workmanship. Small, simple design.</li>
+                        <li>6 Lowest grade currently meeting building code. Low quality materials and simple designs.</li>
+                        <li>7 Average grade of construction and design. Commonly seen in plats and older sub-divisions.</li>
+                        <li>8 Just above average in construction and design. Usually better materials in both the exterior and interior finish work.</li>
+                        <li>9 Better architectural design with extra interior and exterior design and quality.</li>
+                        <li>10 Homes of this quality generally have high quality features. Finish work is better and more design quality is seen in the floor plans. Generally have a larger square footage.</li>
+                        <li>11 Custom design and higher quality finish work with added amenities of solid woods, bathroom fixtures and more luxurious options.</li>
+                        <li>12 Custom design and excellent builders. All materials are of the highest quality and all conveniences are present.</li>
+                        <li>13 Generally custom designed and built. Mansion level. Large amount of highest quality cabinet work, wood trim, marble, entry ways etc.</li>
+                    </ul>
+                    <br>
+                    <p>Condition Category: </p>
+                    <ul class="list-disc list-inside">
+                        <li>1 = Poor- Worn out. Repair and overhaul needed on painted surfaces, roofing, plumbing, heating and numerous functional inadequacies. Excessive deferred maintenance and abuse, limited value-in-use, approaching abandonment or major reconstruction; reuse or change in occupancy is imminent. Effective age is near the end of the scale regardless of the actual chronological age.</li>
+                        <li>2 = Fair- Badly worn. Much repair needed. Many items need refinishing or overhauling, deferred maintenance obvious, inadequate building utility and systems all shortening the life expectancy and increasing the effective age.</li>
+                        <li>3 = Average- Some evidence of deferred maintenance and normal obsolescence with age in that a few minor repairs are needed, along with some refinishing. All major components still functional and contributing toward an extended life expectancy. Effective age and utility is standard for like properties of its class and usage.</li>
+                        <li>4 = Good- No obvious maintenance required but neither is everything new. Appearance and utility are above the standard and the overall effective age will be lower than the typical property.</li>
+                        <li>5= Very Good- All items well maintained, many having been overhauled and repaired as they have shown signs of wear, increasing the life expectancy and lowering the effective age with little deterioration or obsolescence evident with a high degree of utility.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="m-6 grid grid-cols-2 gap-6 w-full">
+            <div>
+                <h2 class="text-left text-2xl underline mb-4">Additional Feature</h2>
+                <div class="grid gap-3 mb-6 grid-cols-5">
+                    <div>
+                        <label for="view">view</label>
+                        <input type="number" id="view" name="view" class="w-full border rounded p-2" placeholder="0">
+                    </div>
+                    <div>
+                        <label for="waterfront">Waterfront</label>
+                        <input type="number" id="waterfront" name="waterfront" class="w-full border rounded p-2" placeholder="0">
+                    </div>
+                    <div>
+                        <label for="renovated">Renovated</label>
+                        <input type="number" id="renovated" name="renovated" class="w-full border rounded p-2" placeholder="0">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flex justify-center mt-4 space-x-4">
+            <input type="submit" value="Predict" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+            <input type="reset" value="Reset" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
+        </div>
+        
+    </form>
+
+    <div class="flex justify-center mt-6" id="price"></div>
+</body>
+</html>
