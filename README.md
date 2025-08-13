@@ -23,7 +23,7 @@ $ pip install -r requirement.txt
 ```
 
 ## Get the dataset
-I am using the "House Sales in King County, USA" datasets provided by HARLFOXEM in kaggle, click llink below to go to the dataset's page and download it
+I am using the "House Sales in King County, USA" datasets provided by HARLFOXEM in kaggle, click the following link to go to the dataset's page and download it
 [House Sales in King County, USA](https://www.kaggle.com/datasets/harlfoxem/housesalesprediction/data)
 
 ## Run the program
